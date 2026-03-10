@@ -29,21 +29,76 @@ cd portal-iso-oea
 npm install
 ```
 
+### Configuración de Variables de Entorno
+
+El proyecto usa diferentes archivos `.env` para diferentes ambientes:
+
+- **`.env`** - Ambiente de desarrollo local (usado por `npm run serve` o `npm run dev`)
+- **`.env.local`** - Overrides locales (tiene precedencia sobre `.env`)
+- **`.env.qa`** - Ambiente QA
+- **`.env.production`** - Ambiente de producción
+
+Cada archivo debe contener:
+```
+VITE_API_BASE=<api_url>
+VITE_APP_VERSION=<version>
+```
+
+Ejemplo `.env` para desarrollo local:
+```
+VITE_API_BASE=http://localhost:5000
+VITE_APP_VERSION=v1.0.0
+```
+
 ### Desarrollo
 
 ```bash
 npm run dev
+# o
+npm run serve
 ```
 
 Esto iniciará el servidor de desarrollo en `http://localhost:3000` y abrirá automáticamente el navegador.
 
+**Nota:** El servidor de desarrollo siempre usa archivos locales (`.env` y `.env.local`) independientemente del modo.
+
 ### Build para Producción
 
+El proceso de build requiere especificar un ambiente. Debes proporcionar el ambiente como argumento.
+
+#### Build para QA
+
 ```bash
-npm run build
+npm run build qa
 ```
 
-Los archivos optimizados se generarán en la carpeta `dist/`.
+Este comando:
+- Carga variables de entorno desde `.env.qa`
+- Construye la aplicación para el ambiente QA
+- Usa la URL base de API configurada en `.env.qa`
+- Genera archivos en la carpeta `dist/`
+
+#### Build para Producción
+
+```bash
+npm run build production
+```
+
+Este comando:
+- Carga variables de entorno desde `.env.production`
+- Construye la aplicación para producción
+- Usa la URL base de API configurada en `.env.production`
+- Genera archivos en la carpeta `dist/`
+
+**Ambientes válidos:**
+- `qa` - Para builds de QA
+- `production` - Para builds de producción
+
+**Nota:** Si `npm run build production` no funciona en tu versión de npm, puedes usar el separador `--`:
+```bash
+npm run build -- production
+npm run build -- qa
+```
 
 ### Preview de Producción
 

@@ -6,6 +6,7 @@
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
+import VersionInfo from './components/VersionInfo';
 
 // ============================================
 // FUNCIONES DE UTILIDAD
@@ -1676,7 +1677,9 @@ function App() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        boxShadow: "0 2px 4px rgba(11,31,58,0.05)"
+        boxShadow: "0 2px 4px rgba(11,31,58,0.05)",
+        flexWrap: "wrap",
+        gap: "8px"
       }}>
         <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "16px" }}>
           <div style={{ color: THEME.textLight, fontSize: "14px" }}>
@@ -1708,12 +1711,17 @@ function App() {
               fontWeight: 500,
               display: "flex",
               alignItems: "center",
-              gap: "8px"
+              gap: "8px",
+              marginRight: "16px"
             }}
           >
             ➕ Nuevo documento
           </button>
         )}
+
+        <div style={{ marginLeft: "auto" }}>
+          <VersionInfo />
+        </div>
 
         {proximosVencer.length > 0 && (
           <div style={{

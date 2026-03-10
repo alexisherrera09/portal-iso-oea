@@ -7,7 +7,8 @@
   "copyright": "Copyright (c) 2026 Ing. Alexis Salvador Herrera Garcia, DTM",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "serve": "vite",
+    "build": "node build.js",
     "preview": "vite preview"
   },
   "dependencies": {
