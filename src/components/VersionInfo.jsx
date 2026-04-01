@@ -71,8 +71,25 @@ const VersionInfo = ({ style = {} }) => {
     }
   };
 
+  const brandLogoStyle = {
+    height: 28,
+    width: 'auto',
+    maxWidth: 160,
+    objectFit: 'contain',
+    display: 'block',
+    flexShrink: 0,
+  };
+
   return (
     <div style={containerStyle}>
+      <img
+        src="/ameinnovate-logo.png"
+        alt="AME Innovate"
+        style={brandLogoStyle}
+        width={160}
+        height={28}
+        loading="lazy"
+      />
       <span style={versionBadgeStyle}>
         {!isSmallScreen && 'Versión: '}
         {version}
